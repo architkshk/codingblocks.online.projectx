@@ -27,7 +27,7 @@
     .content{
       position: static;
       width: 100% !important;
-      height: calc(100vh - 180px);
+      height: unset;
     }
 
     .section{
@@ -55,6 +55,12 @@
 
     .video-player{
       padding: 23% 0;
+    }
+
+    .select-box{
+      display: block;
+      right: 46%;
+      bottom: 12%;
     }
 
     .notify-text{

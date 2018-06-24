@@ -6,9 +6,11 @@ export default class RatingComponentStatic extends Component {
 
   didReceiveAttrs () {
     this._super(...arguments)
-    this.get('api').request('/courses/' + this.get('course.id') + '/rating')
-    .then(response => {
-      this.set('rating', response.rating)
-    })
+    if(this.get('reviewCount')){
+      this.get('api').request('/courses/' + this.get('course.id') + '/rating')
+        .then(response => {
+          this.set('users', response.count)
+        })
+    }
   }
 }

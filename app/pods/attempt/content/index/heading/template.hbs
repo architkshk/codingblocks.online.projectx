@@ -13,17 +13,17 @@
     <div class="row justify-content-end">
       <div class="col-md-4 notify-type align-self-center">
         {{#if course.canHazDoubtsLink}}
-          <div class="notify-text">
-            <a href="{{course.doubtsLink}}" target="_blank" style="color: #fff">
-              <span class="notify-dot new"></span>
-              Solve Doubts
+            <a href="{{course.doubtsLink}}" target="_blank">
+                <div class="notify-text">
+                    <span class="notify-dot new"></span>
+                    Ask Doubts
+                </div>
             </a>
-          </div>
         {{/if}}
       </div>
 
       <div class="button-solid col-12 col-md-4 align-self-center">
-        <button {{action 'transitionToDashboard'}}> &gt; Go to Dashboard</button>
+        <button {{action 'transitionToDashboard'}}> &#60; Go to Dashboard</button>
       </div>
     </div>
   </div>

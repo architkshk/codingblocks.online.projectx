@@ -7,6 +7,8 @@ export default class LoginButton extends Component {
   @service api;
   @service session;
   @service currentUser;
+  @service store;
+  @service raven;
 
   tagName = 'span'
   loginUrl = `${env.oneauthURL}/oauth/authorize?response_type=code&client_id=${
@@ -15,9 +17,8 @@ export default class LoginButton extends Component {
 
   @action
   invalidateSession() {
-    this.get("api")
-      .request("/jwt/logout")
-      .then(() => this.get("session").invalidate());
+    const logoutUrl = env.oneauthURL + '/logout?redirect=' + env.publicUrl + '/logout'
+    window.location.href = logoutUrl
   }
 
   @action

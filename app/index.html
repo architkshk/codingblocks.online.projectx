@@ -2,10 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="msvalidate.01" content="FAD3370B879C516ED95DC8FDCCB3537C" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CodingblocksOnline</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/images/favicon-16x16.png"  sizes="16x16">
+    <link rel="icon" href="/images/favicon-32x32.png"  sizes="32x32">
+    <link rel="icon" href="/images/favicon-96x96.png" sizes="96x96">
 
     {{content-for "head"}}
 
@@ -13,7 +17,19 @@
     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/codingblocks-online.css">
     <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-    
+	<link rel="manifest" href="/manifest.json" />
+
+	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
+	<script>
+	  var OneSignal = window.OneSignal || [];
+	  OneSignal.push(function() {
+		OneSignal.init({
+          allowLocalhostAsSecureOrigin: true,
+		  appId: "01d75aac-5123-4145-b655-ba8d27c5dc13",
+		});
+	  });
+	</script>
+
     {{content-for "head-footer"}}
   </head>
   <body>

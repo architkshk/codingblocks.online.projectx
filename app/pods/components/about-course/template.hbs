@@ -19,7 +19,7 @@
 <div class="o-buy-top slide-up row no-gutters justify-content-between">
   <div class="col-6 align-self-center">
     <div class="row no-gutters">
-      <div class="o-image-card col-sm-2">
+      <div class="card-image col-sm-2">
         <img src="{{course.logo}}" alt="course image">
       </div>
       <div class="heading-d col-10 align-self-center">
@@ -30,7 +30,7 @@
           Mentor :
           {{#each course.instructors as |instructor index|}}
              {{instructor.name}}{{if (lt index (sub course.instructors.length 1)) ", " " "}}
-          {{/each}} 
+          {{/each}}
         </div>
       </div>
     </div>
@@ -38,10 +38,20 @@
   <div class="col-6 align-self-center">
     <div class="row justify-content-end">
       <div class="button-dashed col-6">
-        <button>ENROLL VIA OTP</button>
+        {{#if session.isAuthenticated}}
+            {{#link-to 'classroom' tagName="button"}}
+                ENROLL VIA OTP
+            {{/link-to}}
+        {{else}}
+            <button onclick={{action 'logIn'}}>
+                ENROLL VIA OTP
+            </button>
+        {{/if}}
       </div>
       <div class="button-solid col-6">
-        <button>BUY NOW</button>
+          <a href="#runs">
+              <button class="white">BUY NOW</button>
+          </a>
       </div>
     </div>
   </div>
@@ -64,13 +74,13 @@
         {{course.subtitle}}
       </p>
 
-      {{rating-stars-static course=course}}
+      {{rating-stars-static course=course reviewCount=true}}
 
       <div class="para">
-        <span class="key">Mentor : </span> 
+        <span class="key">Mentor : </span>
         {{#each course.instructors as |instructor index|}}
              {{instructor.name}}{{if (lt index (sub course.instructors.length 1)) ", " " "}}
-          {{/each}} 
+          {{/each}}
       </div>
 
       {{!-- <div class="button-solid">
@@ -99,12 +109,22 @@
 
     </div>
     <div class="button-container row justify-content-center">
-      <div class="button-solid col-6">
-        <button>BUY NOW</button>
-      </div>
+        <div class="button-solid col-6">
+            <a href="#runs">
+                <button class="white">BUY NOW</button>
+            </a>
+        </div>
 
       <div class="button-dashed col-6">
-        <button>ENROLL VIA OTP</button>
+          {{#if session.isAuthenticated}}
+              {{#link-to 'classroom' tagName="button"}}
+                  ENROLL VIA OTP
+              {{/link-to}}
+          {{else}}
+              <button onclick={{action 'logIn'}}>
+                  ENROLL VIA OTP
+              </button>
+          {{/if}}
       </div>
     </div>
 
@@ -131,7 +151,7 @@
 
         </div>
         <div class="para col-4 align-self-center">
-          Ri-visit and Revise topics
+          Re-visit and Revise topics
         </div>
       </div>
 
@@ -193,7 +213,9 @@
         {{#each section.contents as |content|}}
           <div class="accordian-li">
             <div class="li-left flex-row">
-              <div class="accordian-li-type"></div>
+              <div class="accordian-li-type">
+                <div class="content-icon {{content.iconClass}}-green-dark"></div>
+              </div>
               <div class="accordian-li-heading">
                 {{content.payload.name}}
               </div>
@@ -217,7 +239,7 @@
     About Instructors
   </div>
 
-  <div class="o-about-instructors container-fluid">
+  <div class="o-about-instructors container-fluid" >
     <div class="row">
       {{#each course.instructors as |instructor|}}
         <div class="col-md-6 col-sm-12">
@@ -249,7 +271,7 @@
           </div>
         </div>
       {{/each}}
-      
+
     </div>
   </div>
 </div>
@@ -257,7 +279,7 @@
 {{!-- Available Batches --}}
 
 <div class="o-batches">
-<div class="heading-u">
+<div class="heading-u" id="runs">
   Choose from Available Batches
 </div>
 
@@ -291,7 +313,7 @@
 			</div>
 
 			<div class="price">
-				Rs {{run.price}}
+				{{format-price run.price}}
 			</div>
 
 			<div class="my-course-enroll row no-gutters">
@@ -301,9 +323,11 @@
 				</div>
 
 				<div class="button-parent col-4">
-					<div class="button-solid">
-						<button>Enroll Now</button>
-					</div>
+                                    <a href="{{course.buyNowLink}}">
+                                        <div class="button-solid">
+                                            <button>Enroll Now</button>
+                                        </div>
+                                    </a>
 				</div>
 
 			</div>
@@ -328,4 +352,3 @@
     {{/each}}
 </div>
 </div>
-
